@@ -15,6 +15,7 @@ class User: NSObject {
     var userId: String?
     var userName: String?
     var userDictionary: NSDictionary
+    var maxPhotosReached = false
     
     init(dictionary: NSDictionary) {
         self.userDictionary = dictionary

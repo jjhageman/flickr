@@ -22,9 +22,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flickr-logo" translatesAutoresizingMaskIntoConstraints="NO" id="8TT-KA-sQP">
                                 <rect key="frame" x="35" y="111" width="250" height="76"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-D7-ysz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-D7-ysz">
                                 <rect key="frame" x="39" y="510" width="243" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CVz-8e-mdj"/>
+                                    <constraint firstAttribute="width" constant="243" id="vEU-bg-ONv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Sign In through Yahoo">
                                     <color key="titleColor" red="0.43529411759999997" green="0.1764705882" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,10 +41,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="kZd-D7-ysz" secondAttribute="centerX" id="FUs-MQ-dr1"/>
                             <constraint firstItem="jBd-zT-F8e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="aHY-Ha-lW7"/>
                             <constraint firstItem="jBd-zT-F8e" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="eYk-hc-o5t"/>
                             <constraint firstAttribute="trailing" secondItem="jBd-zT-F8e" secondAttribute="trailing" id="f00-HD-Wmf"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="jBd-zT-F8e" secondAttribute="bottom" id="hiz-ue-bRm"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="kZd-D7-ysz" secondAttribute="bottom" constant="28" id="vtL-IY-Qfm"/>
                         </constraints>
                     </view>
                     <connections>
@@ -65,16 +71,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gVM-eM-gXv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="320" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gVM-eM-gXv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fON-qP-Qlc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoCellIdentifier" rowHeight="320" id="fON-qP-Qlc" customClass="PhotoViewCell" customModule="Flickr" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fON-qP-Qlc" id="PgB-HG-k4g">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9UO-r2-A0Y">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="320" id="hJi-4R-pSB"/>
+                                                        <constraint firstAttribute="height" constant="319.5" id="lHF-XE-7HB"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="9UO-r2-A0Y" secondAttribute="trailing" id="gtc-S0-vnj"/>
+                                                <constraint firstItem="9UO-r2-A0Y" firstAttribute="top" secondItem="PgB-HG-k4g" secondAttribute="top" id="kZa-PE-9V2"/>
+                                                <constraint firstAttribute="bottom" secondItem="9UO-r2-A0Y" secondAttribute="bottom" id="pwo-nH-kPq"/>
+                                                <constraint firstItem="9UO-r2-A0Y" firstAttribute="leading" secondItem="PgB-HG-k4g" secondAttribute="leading" id="wq1-w8-LGP"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photo" destination="9UO-r2-A0Y" id="veN-50-STa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -86,17 +111,39 @@
                                     </imageView>
                                 </subviews>
                             </view>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFB-QX-0yB" userLabel="Loading Footer" customClass="LoadingFooterView" customModule="Flickr" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4TE-ij-Jsv">
+                                        <rect key="frame" x="20" y="12" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31X-0R-3oo">
+                                        <rect key="frame" x="58" y="11" width="77" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="8BL-ow-NZc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6T3-t0-IN1" firstAttribute="top" secondItem="BFB-QX-0yB" secondAttribute="bottom" id="01J-ch-fEh"/>
                             <constraint firstAttribute="trailing" secondItem="gVM-eM-gXv" secondAttribute="trailing" id="Jcp-qD-1D7"/>
                             <constraint firstItem="gVM-eM-gXv" firstAttribute="top" secondItem="V9U-Ea-5Ap" secondAttribute="top" id="Mlk-Fq-cJV"/>
+                            <constraint firstAttribute="trailing" secondItem="BFB-QX-0yB" secondAttribute="trailing" id="OlN-rU-Hgm"/>
                             <constraint firstItem="6T3-t0-IN1" firstAttribute="top" secondItem="gVM-eM-gXv" secondAttribute="bottom" id="jTp-3l-WzJ"/>
+                            <constraint firstItem="BFB-QX-0yB" firstAttribute="leading" secondItem="V9U-Ea-5Ap" secondAttribute="leading" id="lo7-2l-Ujm"/>
                             <constraint firstItem="gVM-eM-gXv" firstAttribute="leading" secondItem="V9U-Ea-5Ap" secondAttribute="leading" id="rwx-ft-ztn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aoJ-2d-8jz"/>
                     <connections>
+                        <outlet property="loadingFooter" destination="BFB-QX-0yB" id="tpZ-nB-3P7"/>
                         <outlet property="logoutButton" destination="HCa-Ol-2bS" id="0oK-ed-CyW"/>
                         <outlet property="photoView" destination="gVM-eM-gXv" id="pmV-aS-UXP"/>
                     </connections>

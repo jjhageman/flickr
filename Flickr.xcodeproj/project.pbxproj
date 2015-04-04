@@ -14,6 +14,8 @@
 		3F6904171ACE49CF002802A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F6904161ACE49CF002802A9 /* Images.xcassets */; };
 		3F69041A1ACE49CF002802A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6904181ACE49CF002802A9 /* LaunchScreen.xib */; };
 		3F6904261ACE49CF002802A9 /* FlickrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6904251ACE49CF002802A9 /* FlickrTests.swift */; };
+		3FEFA5621ACFC91E004DF87C /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFA5611ACFC91E004DF87C /* PhotoViewCell.swift */; };
+		3FEFA5651AD07ADD004DF87C /* LoadingFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEFA5641AD07ADD004DF87C /* LoadingFooterView.swift */; };
 		3FF6DB301ACE4C1C005C7748 /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF6DB2F1ACE4C1C005C7748 /* FlickrClient.swift */; };
 		3FF6DB331ACE4FCE005C7748 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF6DB321ACE4FCE005C7748 /* User.swift */; };
 		3FF6DB371ACE79DA005C7748 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF6DB361ACE79DA005C7748 /* Photo.swift */; };
@@ -45,6 +47,8 @@
 		3F6904241ACE49CF002802A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F6904251ACE49CF002802A9 /* FlickrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrTests.swift; sourceTree = "<group>"; };
 		3F69042F1ACE4AB9002802A9 /* Flickr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flickr-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		3FEFA5611ACFC91E004DF87C /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
+		3FEFA5641AD07ADD004DF87C /* LoadingFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingFooterView.swift; sourceTree = "<group>"; };
 		3FF6DB2F1ACE4C1C005C7748 /* FlickrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
 		3FF6DB321ACE4FCE005C7748 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3FF6DB361ACE79DA005C7748 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -112,8 +116,10 @@
 			children = (
 				3FF6DB2E1ACE4BC5005C7748 /* API */,
 				3F69040F1ACE49CF002802A9 /* AppDelegate.swift */,
+				3FEFA5601ACFC8F1004DF87C /* Cells */,
 				3F1AB5B11ACF90A3001F450C /* Controllers */,
 				3FF6DB311ACE4FAB005C7748 /* Models */,
+				3FEFA5631AD07AB3004DF87C /* Views */,
 				3F6904131ACE49CF002802A9 /* Main.storyboard */,
 				3F6904161ACE49CF002802A9 /* Images.xcassets */,
 				3F6904181ACE49CF002802A9 /* LaunchScreen.xib */,
@@ -146,6 +152,22 @@
 				3F6904241ACE49CF002802A9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3FEFA5601ACFC8F1004DF87C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3FEFA5611ACFC91E004DF87C /* PhotoViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		3FEFA5631AD07AB3004DF87C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3FEFA5641AD07ADD004DF87C /* LoadingFooterView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		3FF6DB2E1ACE4BC5005C7748 /* API */ = {
@@ -310,6 +332,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF6DB331ACE4FCE005C7748 /* User.swift in Sources */,
+				3FEFA5621ACFC91E004DF87C /* PhotoViewCell.swift in Sources */,
+				3FEFA5651AD07ADD004DF87C /* LoadingFooterView.swift in Sources */,
 				3F6904121ACE49CF002802A9 /* LoginViewController.swift in Sources */,
 				3F6904101ACE49CF002802A9 /* AppDelegate.swift in Sources */,
 				3F1AB5B31ACF921F001F450C /* PhotosViewController.swift in Sources */,

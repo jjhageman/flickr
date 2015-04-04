@@ -15,7 +15,6 @@ class Photo: NSObject {
     init(dictionary: NSDictionary) {
         super.init()
         
-        println(dictionary)
         self.id = dictionary["id"] as? String
         self.title = dictionary["title"] as? String
         let farmId = dictionary["farm"] as? Int
@@ -38,6 +37,6 @@ class Photo: NSObject {
     }
     
     private func generateUrl(farmId: Int, serverId: String, photoId: String, secret: String) -> NSURL {
-        return NSURL(string: "https://farm\(farmId).staticflickr.com/\(serverId)/\(photoId)_\(secret).jpg")!
+        return NSURL(string: "https://farm\(farmId).staticflickr.com/\(serverId)/\(photoId)_\(secret)_z.jpg")!
     }
 }
