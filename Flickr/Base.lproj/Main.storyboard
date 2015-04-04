@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Flickr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="vXZ-lx-hvc" customClass="LoginViewController" customModule="Flickr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -16,15 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2013-04-07 15.12.58" translatesAutoresizingMaskIntoConstraints="NO" id="jBd-zT-F8e">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flickr-logo" translatesAutoresizingMaskIntoConstraints="NO" id="8TT-KA-sQP">
-                                <rect key="frame" x="35" y="111" width="250" height="150"/>
+                                <rect key="frame" x="35" y="111" width="250" height="76"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZd-D7-ysz">
-                                <rect key="frame" x="86" y="386" width="149" height="30"/>
-                                <color key="backgroundColor" red="0.43529411764705883" green="0.1764705882352941" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
+                                <rect key="frame" x="39" y="510" width="243" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Sign In through Yahoo">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.43529411759999997" green="0.1764705882" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -32,16 +35,81 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jBd-zT-F8e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="aHY-Ha-lW7"/>
+                            <constraint firstItem="jBd-zT-F8e" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="eYk-hc-o5t"/>
+                            <constraint firstAttribute="trailing" secondItem="jBd-zT-F8e" secondAttribute="trailing" id="f00-HD-Wmf"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="jBd-zT-F8e" secondAttribute="bottom" id="hiz-ue-bRm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="SignInButton" destination="kZd-D7-ysz" id="hqb-1D-FYd"/>
+                        <outlet property="signInButton" destination="kZd-D7-ysz" id="k5O-3d-1ht"/>
+                        <segue destination="Uhh-yh-0gk" kind="push" identifier="loginSegue" id="Jwl-nw-5vE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="100" y="286"/>
         </scene>
+        <!--Photos View Controller-->
+        <scene sceneID="XnU-Bd-x6T">
+            <objects>
+                <viewController storyboardIdentifier="PhotosViewController" id="Uhh-yh-0gk" customClass="PhotosViewController" customModule="Flickr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Ik-FX-l0b"/>
+                        <viewControllerLayoutGuide type="bottom" id="6T3-t0-IN1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V9U-Ea-5Ap">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gVM-eM-gXv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fON-qP-Qlc">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fON-qP-Qlc" id="PgB-HG-k4g">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCa-Ol-2bS">
+                                <rect key="frame" x="290" y="22" width="21" height="23"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="power_white" translatesAutoresizingMaskIntoConstraints="NO" id="EVE-LC-49g">
+                                        <rect key="frame" x="0.0" y="0.0" width="21" height="23"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gVM-eM-gXv" secondAttribute="trailing" id="Jcp-qD-1D7"/>
+                            <constraint firstItem="gVM-eM-gXv" firstAttribute="top" secondItem="V9U-Ea-5Ap" secondAttribute="top" id="Mlk-Fq-cJV"/>
+                            <constraint firstItem="6T3-t0-IN1" firstAttribute="top" secondItem="gVM-eM-gXv" secondAttribute="bottom" id="jTp-3l-WzJ"/>
+                            <constraint firstItem="gVM-eM-gXv" firstAttribute="leading" secondItem="V9U-Ea-5Ap" secondAttribute="leading" id="rwx-ft-ztn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aoJ-2d-8jz"/>
+                    <connections>
+                        <outlet property="logoutButton" destination="HCa-Ol-2bS" id="0oK-ed-CyW"/>
+                        <outlet property="photoView" destination="gVM-eM-gXv" id="pmV-aS-UXP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GFo-oZ-eXJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="286"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="flickr-logo" width="250" height="150"/>
+        <image name="2013-04-07 15.12.58" width="1536" height="1536"/>
+        <image name="flickr-logo" width="250" height="76"/>
+        <image name="power_white" width="21" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

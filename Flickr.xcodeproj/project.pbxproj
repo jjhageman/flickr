@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1AB5B31ACF921F001F450C /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AB5B21ACF921F001F450C /* PhotosViewController.swift */; };
 		3F6904101ACE49CF002802A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F69040F1ACE49CF002802A9 /* AppDelegate.swift */; };
-		3F6904121ACE49CF002802A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6904111ACE49CF002802A9 /* ViewController.swift */; };
+		3F6904121ACE49CF002802A9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6904111ACE49CF002802A9 /* LoginViewController.swift */; };
 		3F6904151ACE49CF002802A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F6904131ACE49CF002802A9 /* Main.storyboard */; };
 		3F6904171ACE49CF002802A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F6904161ACE49CF002802A9 /* Images.xcassets */; };
 		3F69041A1ACE49CF002802A9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F6904181ACE49CF002802A9 /* LaunchScreen.xib */; };
@@ -32,10 +33,11 @@
 /* Begin PBXFileReference section */
 		1E4F6E85BA598AF20ED71FD5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2A338082546285C2FBB50494 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F1AB5B21ACF921F001F450C /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		3F69040A1ACE49CF002802A9 /* Flickr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flickr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F69040E1ACE49CF002802A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F69040F1ACE49CF002802A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F6904111ACE49CF002802A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F6904111ACE49CF002802A9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3F6904141ACE49CF002802A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F6904161ACE49CF002802A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3F6904191ACE49CF002802A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -76,6 +78,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F1AB5B11ACF90A3001F450C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F6904111ACE49CF002802A9 /* LoginViewController.swift */,
+				3F1AB5B21ACF921F001F450C /* PhotosViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		3F6904011ACE49CF002802A9 = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +112,8 @@
 			children = (
 				3FF6DB2E1ACE4BC5005C7748 /* API */,
 				3F69040F1ACE49CF002802A9 /* AppDelegate.swift */,
+				3F1AB5B11ACF90A3001F450C /* Controllers */,
 				3FF6DB311ACE4FAB005C7748 /* Models */,
-				3F6904111ACE49CF002802A9 /* ViewController.swift */,
 				3F6904131ACE49CF002802A9 /* Main.storyboard */,
 				3F6904161ACE49CF002802A9 /* Images.xcassets */,
 				3F6904181ACE49CF002802A9 /* LaunchScreen.xib */,
@@ -299,8 +310,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF6DB331ACE4FCE005C7748 /* User.swift in Sources */,
-				3F6904121ACE49CF002802A9 /* ViewController.swift in Sources */,
+				3F6904121ACE49CF002802A9 /* LoginViewController.swift in Sources */,
 				3F6904101ACE49CF002802A9 /* AppDelegate.swift in Sources */,
+				3F1AB5B31ACF921F001F450C /* PhotosViewController.swift in Sources */,
 				3FF6DB301ACE4C1C005C7748 /* FlickrClient.swift in Sources */,
 				3FF6DB371ACE79DA005C7748 /* Photo.swift in Sources */,
 			);

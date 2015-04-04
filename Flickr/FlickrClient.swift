@@ -25,6 +25,18 @@ class FlickrClient: BDBOAuth1RequestOperationManager {
         return Static.instance
     }
     
+    func getUserPhotos(user: User, completion: (photos: [Photo]?, error: NSError?) -> ()) {
+        let uid = user.userId as String!
+        FlickrClient.sharedInstance.GET("rest", parameters: ["method": "flickr.people.getPhotos", "user_id": uid, "api_key": flickrKey, "format": "json", "nojsoncallback": 1], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+//            println("user photos: \(response)")
+            var photos = Photo.photosWithArray(response["photos"] as NSDictionary)
+            completion(photos: photos, error: nil)
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("error getting user photos: \(error.userInfo)")
+                completion(photos: nil, error: error)
+        })
+    }
+    
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
         loginCompletion = completion
         

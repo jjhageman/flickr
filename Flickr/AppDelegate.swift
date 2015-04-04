@@ -12,11 +12,23 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        if User.currentUser != nil {
+            let pvc = self.storyboard.instantiateViewControllerWithIdentifier("PhotosViewController") as PhotosViewController
+            window?.rootViewController = pvc
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
         return true
+    }
+    
+    func userDidLogout() {
+        let lvc = self.storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+        window?.rootViewController = lvc
     }
 
     func applicationWillResignActive(application: UIApplication) {
