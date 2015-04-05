@@ -17,7 +17,7 @@ View your personal Flickr photos
 
 ### Walkthrough
 
-![Video Walkthrough](http://i.imgur.com/6XZDUwf.gifv)
+![Video Walkthrough](gif-walkthrough.gif)
 
 ### Creator
 
