@@ -12,13 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let rootViewController = self.window!.rootViewController as UINavigationController
+        
         if User.currentUser != nil {
-            let pvc = self.storyboard.instantiateViewControllerWithIdentifier("PhotosViewController") as PhotosViewController
-            window?.rootViewController = pvc
+            let pvc = storyboard.instantiateViewControllerWithIdentifier("PhotosViewController") as PhotosViewController
+            rootViewController.pushViewController(pvc, animated: false)
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
@@ -27,8 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func userDidLogout() {
-        let lvc = self.storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
-        window?.rootViewController = lvc
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let rootViewController = self.window!.rootViewController as UINavigationController
+        let lvc = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+        rootViewController.pushViewController(lvc, animated: true)
     }
 
     func applicationWillResignActive(application: UIApplication) {

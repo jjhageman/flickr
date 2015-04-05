@@ -13,12 +13,13 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     var photos: [Photo] = []
     var refreshControl: UIRefreshControl!
     let photoCellId = "photoCellIdentifier"
-    let pageSize = 12
+    let pageSize = 10
     var loading = false
     
     @IBOutlet weak var logoutButton: UIView!
     @IBOutlet weak var photoView: UITableView!
     @IBOutlet weak var loadingFooter: LoadingFooterView!
+    @IBOutlet weak var lodingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,19 +35,13 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         self.photoView.estimatedRowHeight = 320.0
         self.photoView.rowHeight = UITableViewAutomaticDimension
         
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "fetchPhotos", forControlEvents: UIControlEvents.ValueChanged)
-        let dummyTableVC = UITableViewController()
-        dummyTableVC.tableView = self.photoView
-        dummyTableVC.refreshControl = refreshControl
-        
         fetchPhotos(0, size: pageSize)
     }
     
     // TODO: Extract out table updating from data fetch call. Handle the initial tableview load
     // differently than when adding new photos to the end. Only call reloadData() on initial tableview
     // or pull down to refresh. Otherwise use insertRowsAtIndexPaths()
-    private func fetchPhotos(offset:Int, size:Int) {
+    func fetchPhotos(offset:Int, size:Int) {
         
         if (!self.loading) {
             self.setLoadingState(true)
@@ -61,19 +56,23 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                     }
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
                 }
-                self.refreshControl.endRefreshing()
                 self.setLoadingState(false)
             })
         }
     }
     
-    private func onLogoutTap() {
+    func onLogoutTap() {
         User.currentUser?.logout()
     }
     
     private func setLoadingState(loading:Bool) {
         self.loading = loading
         self.loadingFooter.hidden = !loading
+        if loading {
+            lodingIndicator.startAnimating()
+        } else {
+            lodingIndicator.stopAnimating()
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -113,6 +112,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
         if ((maximumOffset - currentOffset) <= 320) && !User.currentUser!.maxPhotosReached {
+            sleep(1) //for effect
             fetchPhotos(photos.count, size: pageSize)
         }
     }

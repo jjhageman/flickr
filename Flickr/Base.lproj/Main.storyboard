@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Q1O-we-NAa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -49,6 +49,7 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="kZd-D7-ysz" secondAttribute="bottom" constant="28" id="vtL-IY-Qfm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kni-5f-iIR"/>
                     <connections>
                         <outlet property="SignInButton" destination="kZd-D7-ysz" id="hqb-1D-FYd"/>
                         <outlet property="signInButton" destination="kZd-D7-ysz" id="k5O-3d-1ht"/>
@@ -57,7 +58,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="286"/>
+            <point key="canvasLocation" x="1164" y="286"/>
         </scene>
         <!--Photos View Controller-->
         <scene sceneID="XnU-Bd-x6T">
@@ -103,15 +104,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCa-Ol-2bS">
-                                <rect key="frame" x="290" y="22" width="21" height="23"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCa-Ol-2bS" userLabel="Logout">
+                                <rect key="frame" x="290" y="22" width="22" height="23"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="power_black" translatesAutoresizingMaskIntoConstraints="NO" id="Yba-l1-9Un">
+                                        <rect key="frame" x="1" y="0.0" width="21" height="23"/>
+                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="power_white" translatesAutoresizingMaskIntoConstraints="NO" id="EVE-LC-49g">
                                         <rect key="frame" x="0.0" y="0.0" width="21" height="23"/>
                                     </imageView>
                                 </subviews>
                             </view>
-                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFB-QX-0yB" userLabel="Loading Footer" customClass="LoadingFooterView" customModule="Flickr" customModuleProvider="target">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFB-QX-0yB" userLabel="Loading Footer" customClass="LoadingFooterView" customModule="Flickr" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4TE-ij-Jsv">
@@ -144,18 +148,38 @@
                     <navigationItem key="navigationItem" id="aoJ-2d-8jz"/>
                     <connections>
                         <outlet property="loadingFooter" destination="BFB-QX-0yB" id="tpZ-nB-3P7"/>
+                        <outlet property="lodingIndicator" destination="4TE-ij-Jsv" id="pVt-Ru-Cky"/>
                         <outlet property="logoutButton" destination="HCa-Ol-2bS" id="0oK-ed-CyW"/>
                         <outlet property="photoView" destination="gVM-eM-gXv" id="pmV-aS-UXP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFo-oZ-eXJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="468" y="286"/>
+            <point key="canvasLocation" x="1532" y="286"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iTf-ZZ-5F7">
+            <objects>
+                <navigationController storyboardIdentifier="navViewController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Q1O-we-NAa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gVj-BJ-Mrg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="QZ9-Hk-dtT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J3x-dr-Jdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="286"/>
         </scene>
     </scenes>
     <resources>
         <image name="2013-04-07 15.12.58" width="1536" height="1536"/>
         <image name="flickr-logo" width="250" height="76"/>
+        <image name="power_black" width="21" height="23"/>
         <image name="power_white" width="21" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
