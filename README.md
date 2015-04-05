@@ -10,7 +10,7 @@ View your personal Flickr photos
   - Logout functionality (without closing the app)
 - Photo navigation
   - MBProgressHUD loading indicator
-  - Photos are downloaded in batches of 10
+  - Photos are downloaded in batches of 10 in background thread
   - AFNetworking used for photo loading
   - Infinite scroll effect 
 
