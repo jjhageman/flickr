@@ -35,18 +35,27 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         self.photoView.estimatedRowHeight = 320.0
         self.photoView.rowHeight = UITableViewAutomaticDimension
         
-        fetchPhotos(0, size: pageSize)
+        loadInitialPhotos()
     }
     
-    // TODO: Extract out table updating from data fetch call. Handle the initial tableview load
-    // differently than when adding new photos to the end. Only call reloadData() on initial tableview
-    // or pull down to refresh. Otherwise use insertRowsAtIndexPaths()
-    func fetchPhotos(offset:Int, size:Int) {
-        
+    func loadInitialPhotos() {
+        FlickrClient.sharedInstance.getUserPhotos(User.currentUser!, offset: 0, size: pageSize, completion: { (photos, error) -> () in
+            if error != nil {
+                println("Error fetching tweets: \(error)")
+            } else {
+                self.photos = photos!
+                self.photoView.reloadData()
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
+            }
+        })
+    }
+    
+    //TODO: Replace reloadData() with insertRowsAtIndexPaths()
+    func fetchAdditionalPhotos(){
         if (!self.loading) {
             self.setLoadingState(true)
-        
-            FlickrClient.sharedInstance.getUserPhotos(User.currentUser!, offset: offset, size: size, completion: { (photos, error) -> () in
+            
+            FlickrClient.sharedInstance.getUserPhotos(User.currentUser!, offset: self.photos.count, size: self.pageSize, completion: { (photos, error) -> () in
                 if error != nil {
                     println("Error fetching tweets: \(error)")
                 } else {
@@ -54,7 +63,6 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                         self.photos += photos!
                         self.photoView.reloadData()
                     }
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
                 }
                 self.setLoadingState(false)
             })
@@ -85,6 +93,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
             (request : NSURLRequest!, response : NSHTTPURLResponse!, image : UIImage!) -> Void in
             cell.photo.image = image;
             cell.photo.alpha = 0
+            cell.photo.clipsToBounds = true
             UIView.animateWithDuration(0.5, animations: {
                 cell.photo.alpha = 1.0
             })
@@ -111,9 +120,10 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
         
-        if ((maximumOffset - currentOffset) <= 320) && !User.currentUser!.maxPhotosReached {
-            sleep(1) //for effect
-            fetchPhotos(photos.count, size: pageSize)
+        // Fetch additional photos if table has initially loaded, and at the bottom of the table, and
+        // the user still has photos to retrieve.
+        if ((self.photoView.numberOfRowsInSection(0) > 0) && ((maximumOffset - currentOffset) <= 320) && (User.currentUser? != nil && User.currentUser?.maxPhotosReached != true)) {
+            fetchAdditionalPhotos()
         }
     }
 

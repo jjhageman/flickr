@@ -29,20 +29,27 @@ class FlickrClient: BDBOAuth1RequestOperationManager {
     
     func getUserPhotos(user: User, offset:Int, size:Int, completion: (photos: [Photo]?, error: NSError?) -> ()) {
         if !user.maxPhotosReached {
-            let uid = user.userId as String!
-            let page = (offset < size) ? 1 : ((offset/size) + 1) as Int
-            println("> Fetching \(size) photos of page \(page)")
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+
+                let uid = user.userId as String!
+                let page = (offset < size) ? 1 : ((offset/size) + 1) as Int
+                println("> Fetching \(size) photos of page \(page)")
         
-            FlickrClient.sharedInstance.GET("rest", parameters: ["method": "flickr.people.getPhotos", "per_page": size, "page": page, "user_id": uid, "api_key": flickrKey, "format": "json", "nojsoncallback": 1], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                var photos = Photo.photosWithArray(response["photos"] as NSDictionary)
-                if photos.count < size {
-                    user.maxPhotosReached = true
-                }
-                completion(photos: photos, error: nil)
-                }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                    println("error getting user photos: \(error.userInfo)")
-                    completion(photos: nil, error: error)
-            })
+                FlickrClient.sharedInstance.GET("rest", parameters: ["method": "flickr.people.getPhotos", "per_page": size, "page": page, "user_id": uid, "api_key": flickrKey, "format": "json", "nojsoncallback": 1], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                    var photos = Photo.photosWithArray(response["photos"] as NSDictionary)
+                    if photos.count < size {
+                        user.maxPhotosReached = true
+                    }
+//                    sleep(1) //for demo effect
+
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(photos: photos, error: nil)
+                    }
+                    }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                        println("error getting user photos: \(error.userInfo)")
+                        completion(photos: nil, error: error)
+                })
+            }
         }
     }
     

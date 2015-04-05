@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if User.currentUser != nil {
             let pvc = storyboard.instantiateViewControllerWithIdentifier("PhotosViewController") as PhotosViewController
-            rootViewController.pushViewController(pvc, animated: false)
+            rootViewController.pushViewController(pvc, animated: true)
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
